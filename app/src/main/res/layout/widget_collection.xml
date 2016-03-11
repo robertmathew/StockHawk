@@ -4,7 +4,7 @@
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-    android:padding="@dimen/widget_margin">
+              android:padding="@dimen/widget_margin">
 
     <FrameLayout
         android:id="@+id/widget"
@@ -20,10 +20,12 @@
             android:textSize="@dimen/md_title_textsize"
             android:layout_gravity="center"/>
     </FrameLayout>
+
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1">
+
         <ListView
             android:id="@+id/widget_list"
             android:layout_width="match_parent"
