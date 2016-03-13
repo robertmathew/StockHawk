@@ -1,15 +1,13 @@
-<FrameLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:fab="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    >
+    android:layout_height="match_parent">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        />
+        android:layout_height="match_parent" />
 
     <com.melnykov.fab.FloatingActionButton
         android:id="@+id/fab"
@@ -24,6 +22,5 @@
         fab:fab_shadow="true"
         fab:fab_type="normal"
         fab:layout_anchor="recycler_view"
-        fab:layout_anchorGravity="bottom | end"
-        />
+        fab:layout_anchorGravity="bottom | end" />
 </FrameLayout>
