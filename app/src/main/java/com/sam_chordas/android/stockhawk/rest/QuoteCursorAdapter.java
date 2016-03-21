@@ -76,6 +76,11 @@ public class QuoteCursorAdapter extends CursorRecyclerViewAdapter<QuoteCursorAda
     }
 
     @Override
+    public boolean onItemMove(int fromPosition, int toPosition) {
+        return false;
+    }
+
+    @Override
     public void onItemDismiss(int position) {
         Cursor c = getCursor();
         c.moveToPosition(position);
