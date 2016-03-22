@@ -42,6 +42,8 @@ public class StocksActivity extends AppCompatActivity implements LoaderManager.L
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
      */
 
+    private static final String TAG = "StocksActivity";
+
     private Intent mServiceIntent;
     private ItemTouchHelper mItemTouchHelper;
     private static final int CURSOR_LOADER_ID = 0;
@@ -88,8 +90,18 @@ public class StocksActivity extends AppCompatActivity implements LoaderManager.L
                 new RecyclerViewItemClickListener.OnItemClickListener() {
                     @Override
                     public void onItemClick(View v, int position) {
-                        //TODO:
-                        // do something on item click
+                        mCursor.moveToPosition(position);
+                        String id = mCursor.getString(mCursor.getColumnIndex(QuoteColumns._ID));
+                        String quoteName = mCursor.getString(
+                                mCursor.getColumnIndex((QuoteColumns.NAME)));
+                        Toast.makeText(StocksActivity.this, "position = " + position,
+                                Toast.LENGTH_SHORT).show();
+                        //Log.d(TAG, "onItemClick: ID: " + id);
+                        Intent i = new Intent(StocksActivity.this, DetailStockActivity.class);
+                        i.putExtra("id", id);
+                        i.putExtra("name", quoteName);
+                        startActivity(i);
+
                     }
                 }));
         recyclerView.setAdapter(mCursorAdapter);
@@ -194,8 +206,9 @@ public class StocksActivity extends AppCompatActivity implements LoaderManager.L
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
         // This narrows the return to only the stocks that are most current.
         return new CursorLoader(this, QuoteProvider.Quotes.CONTENT_URI,
-                new String[]{QuoteColumns._ID, QuoteColumns.SYMBOL, QuoteColumns.BIDPRICE,
-                        QuoteColumns.PERCENT_CHANGE, QuoteColumns.CHANGE, QuoteColumns.ISUP},
+                new String[]{QuoteColumns._ID, QuoteColumns.SYMBOL, QuoteColumns.NAME,
+                        QuoteColumns.BIDPRICE, QuoteColumns.PERCENT_CHANGE, QuoteColumns.CHANGE,
+                        QuoteColumns.ISUP},
                 QuoteColumns.ISCURRENT + " = ?",
                 new String[]{"1"},
                 null);

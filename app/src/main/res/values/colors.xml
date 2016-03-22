@@ -9,4 +9,8 @@
     <color name="material_red_a200">#FF5252</color>
     <color name="material_red_a100">#FF8A80</color>
     <color name="material_red_a400">#FF1744</color>
+
+    <!--High and low-->
+    <color name="low_red">#F44336</color>
+    <color name="high_green">#4CAF50</color>
 </resources>
