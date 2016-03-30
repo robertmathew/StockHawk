@@ -40,9 +40,8 @@
             tools:text="2.67%" />
     </LinearLayout>
 
-
     <android.support.v7.widget.GridLayout
-        android:id="@+id/android.support.v7.widget.GridLayout"
+        android:id="@+id/gridLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/linearPrice"
@@ -143,5 +142,12 @@
             tools:text="46.17" />
 
     </android.support.v7.widget.GridLayout>
+
+    <com.db.chart.view.LineChartView
+        android:id="@+id/linechart"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:padding="16dp"
+        android:layout_below="@+id/gridLayout" />
 
 </RelativeLayout>
