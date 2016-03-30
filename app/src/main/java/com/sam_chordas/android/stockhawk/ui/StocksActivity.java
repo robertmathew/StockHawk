@@ -94,8 +94,7 @@ public class StocksActivity extends AppCompatActivity implements LoaderManager.L
                         String id = mCursor.getString(mCursor.getColumnIndex(QuoteColumns._ID));
                         String quoteName = mCursor.getString(
                                 mCursor.getColumnIndex((QuoteColumns.NAME)));
-                        Toast.makeText(StocksActivity.this, "position = " + position,
-                                Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(StocksActivity.this, "position = " + position, Toast.LENGTH_SHORT).show();
                         //Log.d(TAG, "onItemClick: ID: " + id);
                         Intent i = new Intent(StocksActivity.this, DetailStockActivity.class);
                         i.putExtra("id", id);
@@ -123,7 +122,7 @@ public class StocksActivity extends AppCompatActivity implements LoaderManager.L
                                     // in the DB and proceed accordingly
                                     Cursor c = getContentResolver().query(QuoteProvider.Quotes.CONTENT_URI,
                                             new String[]{QuoteColumns.SYMBOL}, QuoteColumns.SYMBOL + "= ?",
-                                            new String[]{input.toString()}, null);
+                                            new String[]{input.toString().toUpperCase()}, null);
                                     if (c.getCount() != 0) {
                                         Toast toast =
                                                 Toast.makeText(StocksActivity.this, "This stock is already saved!",
@@ -134,9 +133,10 @@ public class StocksActivity extends AppCompatActivity implements LoaderManager.L
                                     } else {
                                         // Add the stock to DB
                                         mServiceIntent.putExtra("tag", "add");
-                                        mServiceIntent.putExtra("symbol", input.toString());
+                                        mServiceIntent.putExtra("symbol", input.toString().toUpperCase());
                                         startService(mServiceIntent);
                                     }
+                                    c.close();
                                 }
                             })
                             .show();

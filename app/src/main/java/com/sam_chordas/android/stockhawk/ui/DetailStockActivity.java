@@ -40,23 +40,17 @@ import java.util.Date;
 public class DetailStockActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor> {
 
     private static final String TAG = "DetailStockActivity";
-    private Cursor quoteData;
-    private String quoteID, quoteName, quoteSymbol;
+    private String quoteID;
+    private String quoteSymbol;
     private static final int CURSOR_LOADER_ID = 1;
     private TextView tvPrice, tvChangePercent, tvOpen, tvPreviousClose, tvDayLow, tvDayHigh,
             tvYearLow, tvYearHigh;
-    Toolbar toolbar;
-    ArrayList<String> labels;
-    ArrayList<Float> values;
-    int rangeMin, rangeMax;
-    int labelMin, labelMax;
+    private ArrayList<String> labels;
+    private ArrayList<Float> values;
+    private int rangeMin, rangeMax;
 
-
-    //private final String[] mLabels = {"Jan", "Feb", "", "", "", "", "", "", ""};
-    //private final float[][] mValues = {{0f, 2f, 1.4f, 4.f, 3.5f, 4.3f, 2f, 4f, 6.f},{1.5f, 2.5f, 1.5f, 5f, 4f, 5f, 4.3f, 2.1f, 1.4f}};
-
-    String[] mLabels;
-    float[] mValues;
+    private String[] mLabels;
+    private float[] mValues;
 
     LineChartView quoteChart;
 
@@ -65,23 +59,21 @@ public class DetailStockActivity extends AppCompatActivity implements LoaderMana
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_stock);
 
-        toolbar = (Toolbar) findViewById(R.id.detail_toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.detail_toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         quoteID = getIntent().getStringExtra("id");
-        quoteName = getIntent().getStringExtra("name");
+        String quoteName = getIntent().getStringExtra("name");
 
         getSupportActionBar().setTitle(quoteName);
 
         getLoaderManager().initLoader(CURSOR_LOADER_ID, null, this);
         Log.d(TAG, "ID: " + quoteID);
 
-
         tvPrice = (TextView) findViewById(R.id.tvPrice);
         tvChangePercent = (TextView) findViewById(R.id.tvChangePercent);
-        //tvChange = (TextView) findViewById(R.id.tvChange);
         tvOpen = (TextView) findViewById(R.id.tvOpen);
         tvPreviousClose = (TextView) findViewById(R.id.tvPrevClose);
         tvDayLow = (TextView) findViewById(R.id.tvDayLow);
@@ -89,9 +81,6 @@ public class DetailStockActivity extends AppCompatActivity implements LoaderMana
         tvYearLow = (TextView) findViewById(R.id.tvYearLow);
         tvYearHigh = (TextView) findViewById(R.id.tvYearHigh);
         quoteChart = (LineChartView) findViewById(R.id.linechart);
-
-        //Chart
-
     }
 
     @Override
@@ -101,7 +90,6 @@ public class DetailStockActivity extends AppCompatActivity implements LoaderMana
         if (id == android.R.id.home) {
             onBackPressed();
         }
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -121,28 +109,25 @@ public class DetailStockActivity extends AppCompatActivity implements LoaderMana
 
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
-        quoteData = data;
         Log.d(TAG, DatabaseUtils.dumpCursorToString(data));
-        quoteData.moveToFirst();
-        quoteSymbol = quoteData.getString(quoteData.getColumnIndex(QuoteColumns.SYMBOL));
-        tvPrice.setText(quoteData.getString(quoteData.getColumnIndex(QuoteColumns.BIDPRICE)));
-        tvChangePercent.setText(quoteData.getString(quoteData.getColumnIndex(QuoteColumns.PERCENT_CHANGE)));
+        data.moveToFirst();
+        quoteSymbol = data.getString(data.getColumnIndex(QuoteColumns.SYMBOL));
+        tvPrice.setText(data.getString(data.getColumnIndex(QuoteColumns.BIDPRICE)));
+        tvChangePercent.setText(data.getString(data.getColumnIndex(QuoteColumns.PERCENT_CHANGE)));
         int sdk = Build.VERSION.SDK_INT;
-        if (quoteData.getInt(quoteData.getColumnIndex("is_up")) == 1) {
+        if (data.getInt(data.getColumnIndex("is_up")) == 1) {
             tvChangePercent.setTextColor(getResources().getColor(R.color.high_green));
         } else {
             tvChangePercent.setTextColor(getResources().getColor(R.color.low_red));
         }
 
-        tvOpen.setText(quoteData.getString(quoteData.getColumnIndex(QuoteColumns.OPEN)));
-        tvPreviousClose.setText(quoteData.getString(quoteData.getColumnIndex(QuoteColumns.PREVIOUSCLOSE)));
-        tvDayLow.setText(quoteData.getString(quoteData.getColumnIndex(QuoteColumns.DAYLOW)));
-        tvDayHigh.setText(quoteData.getString(quoteData.getColumnIndex(QuoteColumns.DAYHIGH)));
-        tvYearLow.setText(quoteData.getString(quoteData.getColumnIndex(QuoteColumns.YEARLOW)));
-        tvYearHigh.setText(quoteData.getString(quoteData.getColumnIndex(QuoteColumns.YEARHIGH)));
+        tvOpen.setText(data.getString(data.getColumnIndex(QuoteColumns.OPEN)));
+        tvPreviousClose.setText(data.getString(data.getColumnIndex(QuoteColumns.PREVIOUSCLOSE)));
+        tvDayLow.setText(data.getString(data.getColumnIndex(QuoteColumns.DAYLOW)));
+        tvDayHigh.setText(data.getString(data.getColumnIndex(QuoteColumns.DAYHIGH)));
+        tvYearLow.setText(data.getString(data.getColumnIndex(QuoteColumns.YEARLOW)));
+        tvYearHigh.setText(data.getString(data.getColumnIndex(QuoteColumns.YEARHIGH)));
         downloadFinanceChart();
-        //Chart
-
     }
 
     @Override
@@ -172,17 +157,6 @@ public class DetailStockActivity extends AppCompatActivity implements LoaderMana
 
                         // Parse JSON
                         JSONObject object = new JSONObject(result);
-
-                        //Label value
-                        /*JSONArray jsonLabels = object.getJSONArray("labels");
-                        for (int i = 0; i < jsonLabels.length(); i++) {
-
-                        }*/
-
-                        //LABEL MIN/MAX value
-                        /*JSONObject jsonLabel = object.getJSONObject("Timestamp");
-                        labelMin = jsonLabel.getInt("min");
-                        labelMax = jsonLabel.getInt("max");*/
 
                         //Range MIN/MAX value
                         JSONObject range = object.getJSONObject("ranges");
