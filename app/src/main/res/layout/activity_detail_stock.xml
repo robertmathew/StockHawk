@@ -52,7 +52,7 @@
         <TextView
             android:fontFamily="sans-serif"
             android:gravity="center_vertical"
-            android:text="Open"
+            android:text="@string/open"
             android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
             app:layout_columnWeight="1"
             app:layout_gravity="fill"
@@ -69,7 +69,7 @@
             android:fontFamily="sans-serif"
             android:gravity="center_vertical"
             android:paddingLeft="16dp"
-            android:text="Prev. close"
+            android:text="@string/previous_close"
             android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
             app:layout_columnWeight="1"
             app:layout_gravity="fill"
@@ -85,7 +85,7 @@
         <TextView
             android:fontFamily="sans-serif"
             android:gravity="center_vertical"
-            android:text="Day low"
+            android:text="@string/day_low"
             android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
             app:layout_gravity="fill"
             app:layout_rowWeight="1" />
@@ -101,7 +101,7 @@
             android:fontFamily="sans-serif"
             android:gravity="center_vertical"
             android:paddingLeft="16dp"
-            android:text="Year low"
+            android:text="@string/year_low"
             android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
             app:layout_gravity="fill" />
 
@@ -115,7 +115,7 @@
         <TextView
             android:fontFamily="sans-serif"
             android:gravity="center_vertical"
-            android:text="Day high"
+            android:text="@string/day_high"
             android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
             app:layout_gravity="fill"
             app:layout_rowWeight="1" />
@@ -131,7 +131,7 @@
             android:fontFamily="sans-serif"
             android:gravity="center_vertical"
             android:paddingLeft="16dp"
-            android:text="Year high"
+            android:text="@string/year_high"
             android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
             app:layout_gravity="fill" />
 

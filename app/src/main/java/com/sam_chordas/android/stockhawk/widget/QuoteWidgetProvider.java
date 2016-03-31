@@ -33,9 +33,7 @@ public class QuoteWidgetProvider extends AppWidgetProvider {
         // Update each of the widgets with the remote adapter
 
         // Perform this loop procedure for each App Widget that belongs to this provider
-        for (int i = 0; i < appWidgetIds.length; i++) {
-            int appWidgetId = appWidgetIds[i];
-
+        for (int appWidgetId : appWidgetIds) {
             final Intent intent = new Intent(context, QuoteWidgetRemoteViewsService.class);
             intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetId);
             intent.setData(Uri.parse(intent.toUri(Intent.URI_INTENT_SCHEME)));

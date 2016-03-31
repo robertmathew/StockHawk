@@ -10,4 +10,13 @@
     <string name="widget_title" translatable="true">Today\'s Market</string>
     <string name="network_toast" translatable="true">Uh-oh! This app requires an internet connection</string>
     <string name="invalid_symbol" translatable="true">Invalid Symbol</string>
+    <string name="open" translatable="true">Open</string>
+    <string name="previous_close" translatable="true">Prev. close</string>
+    <string name="day_low" translatable="true">Day low</string>
+    <string name="year_low" translatable="true">Year low</string>
+    <string name="day_high" translatable="true">Day high</string>
+    <string name="year_high" translatable="true">Year high</string>
+    <string name="add_stock">Add a stock</string>
+
+
 </resources>

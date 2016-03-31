@@ -5,17 +5,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center_vertical"
     android:minHeight="?android:attr/listPreferredItemHeight"
     android:orientation="horizontal"
     android:padding="@dimen/widget_margin">
-
 
     <TextView
         android:id="@+id/stock_symbol"
         style="@style/StockSymbolTextStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="3dp"
         android:gravity="start|center_vertical"
         tools:text="GOOG"/>
 
@@ -30,9 +29,8 @@
             style="@style/BidPriceTextStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
             tools:text="1000.00"/>
 
         <TextView
@@ -40,9 +38,7 @@
             style="@style/PercentChangeTextStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="3dp"
             android:background="@drawable/percent_change_pill"
-            android:gravity="center_vertical"
             android:paddingLeft="3dp"
             android:paddingRight="3dp"
             tools:text="100%"/>

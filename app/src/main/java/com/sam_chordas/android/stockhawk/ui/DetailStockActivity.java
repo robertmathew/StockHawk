@@ -17,7 +17,6 @@ import android.widget.TextView;
 
 import com.db.chart.Tools;
 import com.db.chart.model.LineSet;
-import com.db.chart.model.Point;
 import com.db.chart.view.AxisController;
 import com.db.chart.view.ChartView;
 import com.db.chart.view.LineChartView;
@@ -206,9 +205,6 @@ public class DetailStockActivity extends AppCompatActivity implements LoaderMana
 
                         LineSet dataset = new LineSet(mLabels, mValues);
                         dataset.setColor(Color.parseColor("#53c1bd")).setThickness(3);
-                        for (int j = 0; j < mLabels.length; j+=5) {
-                            Point point = (Point) dataset.getEntry(j);
-                        }
                         quoteChart.addData(dataset);
 
                         Paint gridPaint = new Paint();
