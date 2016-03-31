@@ -16,7 +16,9 @@
     <string name="year_low" translatable="true">Year low</string>
     <string name="day_high" translatable="true">Day high</string>
     <string name="year_high" translatable="true">Year high</string>
-    <string name="add_stock">Add a stock</string>
+    <string name="add_stock" translatable="true">Add a stock</string>
+    <string name="empty_message" translatable="true">Stock list is empty. Please add some</string>
+    <string name="out_of_data" translatable="true">The data is out-of-date</string>
 
 
 </resources>

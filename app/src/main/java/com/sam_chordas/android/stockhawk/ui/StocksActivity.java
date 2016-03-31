@@ -19,6 +19,7 @@ import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
@@ -45,28 +46,24 @@ public class StocksActivity extends AppCompatActivity implements LoaderManager.L
     private static final String TAG = "StocksActivity";
 
     private Intent mServiceIntent;
-    private ItemTouchHelper mItemTouchHelper;
     private static final int CURSOR_LOADER_ID = 0;
     private QuoteCursorAdapter mCursorAdapter;
     private Context mContext;
     private Cursor mCursor;
-    boolean isConnected;
-    private Toolbar toolbar;
+    private TextView tvMessage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mContext = this;
-        ConnectivityManager cm = (ConnectivityManager) mContext.getSystemService(Context.CONNECTIVITY_SERVICE);
-
-        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
-        isConnected = activeNetwork != null && activeNetwork.isConnectedOrConnecting();
 
         setContentView(R.layout.activity_stocks);
 
         //Toolbar
-        toolbar = (Toolbar) findViewById(R.id.stocks_toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.stocks_toolbar);
         setSupportActionBar(toolbar);
+
+        tvMessage = (TextView) findViewById(R.id.message);
 
         // The intent service is for executing immediate pulls from the Yahoo API
         // GCMTaskService can only schedule tasks, they cannot execute immediately
@@ -74,10 +71,8 @@ public class StocksActivity extends AppCompatActivity implements LoaderManager.L
         if (savedInstanceState == null) {
             // Run the initialize task service so that some stocks appear upon an empty database
             mServiceIntent.putExtra("tag", "init");
-            if (isConnected) {
+            if (isConnected()) {
                 startService(mServiceIntent);
-            } else {
-                networkToast();
             }
         }
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
@@ -91,10 +86,7 @@ public class StocksActivity extends AppCompatActivity implements LoaderManager.L
                     public void onItemClick(View v, int position) {
                         mCursor.moveToPosition(position);
                         String id = mCursor.getString(mCursor.getColumnIndex(QuoteColumns._ID));
-                        String quoteName = mCursor.getString(
-                                mCursor.getColumnIndex((QuoteColumns.NAME)));
-                        //Toast.makeText(StocksActivity.this, "position = " + position, Toast.LENGTH_SHORT).show();
-                        //Log.d(TAG, "onItemClick: ID: " + id);
+                        String quoteName = mCursor.getString(mCursor.getColumnIndex((QuoteColumns.NAME)));
                         Intent i = new Intent(StocksActivity.this, DetailStockActivity.class);
                         i.putExtra("id", id);
                         i.putExtra("name", quoteName);
@@ -110,7 +102,7 @@ public class StocksActivity extends AppCompatActivity implements LoaderManager.L
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (isConnected) {
+                if (isConnected()) {
                     new MaterialDialog.Builder(mContext).title(R.string.symbol_search)
                             .content(R.string.content_test)
                             .inputType(InputType.TYPE_CLASS_TEXT)
@@ -147,10 +139,10 @@ public class StocksActivity extends AppCompatActivity implements LoaderManager.L
         });
 
         ItemTouchHelper.Callback callback = new SimpleItemTouchHelperCallback(mCursorAdapter);
-        mItemTouchHelper = new ItemTouchHelper(callback);
-        mItemTouchHelper.attachToRecyclerView(recyclerView);
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(callback);
+        itemTouchHelper.attachToRecyclerView(recyclerView);
 
-        if (isConnected) {
+        if (isConnected()) {
             long period = 3600L;
             long flex = 10L;
             String periodicTag = "periodic";
@@ -168,6 +160,31 @@ public class StocksActivity extends AppCompatActivity implements LoaderManager.L
             // Schedule task with tag "periodic." This ensure that only the stocks present in the DB
             // are updated.
             GcmNetworkManager.getInstance(this).schedule(periodicTask);
+        }
+    }
+
+    private boolean isConnected() {
+        ConnectivityManager cm = (ConnectivityManager) mContext.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+        return activeNetwork != null && activeNetwork.isConnectedOrConnecting();
+    }
+
+    private void checkCursorAdapter() {
+        if (isConnected()) {
+            if (mCursorAdapter.getItemCount() == 0) {
+                tvMessage.setText(R.string.empty_message);
+                tvMessage.setVisibility(View.VISIBLE);
+            } else {
+                tvMessage.setVisibility(View.INVISIBLE);
+            }
+        } else {
+            if (mCursorAdapter.getItemCount() == 0) {
+                tvMessage.setText(R.string.network_toast);
+                tvMessage.setVisibility(View.VISIBLE);
+            } else {
+                tvMessage.setVisibility(View.INVISIBLE);
+                Toast.makeText(mContext, getString(R.string.out_of_data), Toast.LENGTH_SHORT).show();
+            }
         }
     }
 
@@ -217,6 +234,7 @@ public class StocksActivity extends AppCompatActivity implements LoaderManager.L
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
         mCursorAdapter.swapCursor(data);
         mCursor = data;
+        checkCursorAdapter();
     }
 
     @Override
