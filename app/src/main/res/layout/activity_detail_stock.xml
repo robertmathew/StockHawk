@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.DetailStockActivity">
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:context=".ui.DetailStockActivity">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/detail_toolbar"
@@ -12,7 +12,7 @@
         android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorPrimary"
         android:theme="@style/ThemeOverlay.AppCompat.Dark"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
 
     <LinearLayout
         android:id="@+id/linearPrice"
@@ -27,7 +27,7 @@
             android:layout_height="wrap_content"
             android:padding="16dp"
             android:textAppearance="@style/TextAppearance.AppCompat.Display2"
-            tools:text="34.63" />
+            tools:text="34.63"/>
 
         <TextView
             android:id="@+id/tvChangePercent"
@@ -37,7 +37,7 @@
             android:layout_marginStart="32dp"
             android:textAppearance="@style/TextAppearance.AppCompat.Headline"
             app:layout_gravity="fill"
-            tools:text="2.67%" />
+            tools:text="2.67%"/>
     </LinearLayout>
 
     <android.support.v7.widget.GridLayout
@@ -45,101 +45,127 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/linearPrice"
-        android:padding="16dp"
+        android:paddingBottom="16dp"
+        android:paddingEnd="16dp"
+        android:paddingLeft="0dp"
+        android:paddingRight="16dp"
+        android:paddingStart="0dp"
+        android:paddingTop="16dp"
         app:columnCount="4">
 
         <!--Open value-->
         <TextView
             android:fontFamily="sans-serif"
             android:gravity="center_vertical"
+            android:paddingEnd="16dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:paddingStart="16dp"
             android:text="@string/open"
             android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
             app:layout_columnWeight="1"
             app:layout_gravity="fill"
-            app:layout_rowWeight="1" />
+            app:layout_rowWeight="1"/>
 
         <TextView
             android:id="@+id/tvOpen"
             android:textAppearance="@style/TextAppearance.AppCompat.Title"
             app:layout_gravity="fill"
-            tools:text="35.20" />
+            tools:text="35.20"/>
 
         <!--Previous close-->
         <TextView
             android:fontFamily="sans-serif"
             android:gravity="center_vertical"
+            android:paddingEnd="16dp"
             android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:paddingStart="16dp"
             android:text="@string/previous_close"
             android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
             app:layout_columnWeight="1"
             app:layout_gravity="fill"
-            app:layout_rowWeight="1" />
+            app:layout_rowWeight="1"/>
 
         <TextView
             android:id="@+id/tvPrevClose"
             android:textAppearance="@style/TextAppearance.AppCompat.Title"
             app:layout_gravity="fill"
-            tools:text="35.47" />
+            tools:text="35.47"/>
 
         <!--Day low-->
         <TextView
             android:fontFamily="sans-serif"
             android:gravity="center_vertical"
+            android:paddingEnd="16dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:paddingStart="16dp"
             android:text="@string/day_low"
             android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
             app:layout_gravity="fill"
-            app:layout_rowWeight="1" />
+            app:layout_rowWeight="1"/>
 
         <TextView
             android:id="@+id/tvDayLow"
             android:textAppearance="@style/TextAppearance.AppCompat.Title"
             app:layout_gravity="fill"
-            tools:text="34.25" />
+            tools:text="34.25"/>
 
         <!--Year low-->
         <TextView
             android:fontFamily="sans-serif"
             android:gravity="center_vertical"
+            android:paddingEnd="16dp"
             android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:paddingStart="16dp"
             android:text="@string/year_low"
             android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-            app:layout_gravity="fill" />
+            app:layout_gravity="fill"/>
 
         <TextView
             android:id="@+id/tvYearLow"
             android:textAppearance="@style/TextAppearance.AppCompat.Title"
             app:layout_gravity="fill"
-            tools:text="26.15" />
+            tools:text="26.15"/>
 
         <!--Day high-->
         <TextView
             android:fontFamily="sans-serif"
             android:gravity="center_vertical"
+            android:paddingEnd="16dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:paddingStart="16dp"
             android:text="@string/day_high"
             android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
             app:layout_gravity="fill"
-            app:layout_rowWeight="1" />
+            app:layout_rowWeight="1"/>
 
         <TextView
             android:id="@+id/tvDayHigh"
             android:textAppearance="@style/TextAppearance.AppCompat.Title"
             app:layout_gravity="fill"
-            tools:text="36.85" />
+            tools:text="36.85"/>
 
         <!--Year high-->
         <TextView
             android:fontFamily="sans-serif"
             android:gravity="center_vertical"
+            android:paddingEnd="16dp"
             android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:paddingStart="16dp"
             android:text="@string/year_high"
             android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-            app:layout_gravity="fill" />
+            app:layout_gravity="fill"/>
 
         <TextView
             android:id="@+id/tvYearHigh"
             android:textAppearance="@style/TextAppearance.AppCompat.Title"
             app:layout_gravity="fill"
-            tools:text="46.17" />
+            tools:text="46.17"/>
 
     </android.support.v7.widget.GridLayout>
 
@@ -147,7 +173,7 @@
         android:id="@+id/linechart"
         android:layout_width="match_parent"
         android:layout_height="250dp"
-        android:padding="16dp"
-        android:layout_below="@+id/gridLayout" />
+        android:layout_below="@+id/gridLayout"
+        android:padding="16dp"/>
 
 </RelativeLayout>

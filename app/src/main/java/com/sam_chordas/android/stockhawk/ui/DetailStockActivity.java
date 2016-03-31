@@ -4,7 +4,6 @@ import android.app.LoaderManager;
 import android.content.CursorLoader;
 import android.content.Loader;
 import android.database.Cursor;
-import android.database.DatabaseUtils;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.os.Bundle;
@@ -109,7 +108,7 @@ public class DetailStockActivity extends AppCompatActivity implements LoaderMana
 
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
-        Log.d(TAG, DatabaseUtils.dumpCursorToString(data));
+        //Log.d(TAG, DatabaseUtils.dumpCursorToString(data));
         data.moveToFirst();
         quoteSymbol = data.getString(data.getColumnIndex(QuoteColumns.SYMBOL));
         tvPrice.setText(data.getString(data.getColumnIndex(QuoteColumns.BIDPRICE)));
