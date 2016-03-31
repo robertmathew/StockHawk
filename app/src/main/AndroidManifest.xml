@@ -40,7 +40,7 @@
         <provider
             android:name=".data.generated.QuoteProvider"
             android:authorities="com.sam_chordas.android.stockhawk.data.QuoteProvider"
-            android:exported="false" />
+            android:exported="true" />
 
         <receiver
             android:name=".widget.QuoteWidgetProvider"
@@ -62,7 +62,7 @@
         <activity android:name=".ui.DetailStockActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ui.DetailStockActivity"/>
+                android:value=".ui.StocksActivity"/>
         </activity>
     </application>
 

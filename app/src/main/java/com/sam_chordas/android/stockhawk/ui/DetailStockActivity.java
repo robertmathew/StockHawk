@@ -7,8 +7,8 @@ import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -65,12 +65,13 @@ public class DetailStockActivity extends AppCompatActivity implements LoaderMana
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         quoteID = getIntent().getStringExtra("id");
+        Log.d(TAG, "ID: " + quoteID);
         String quoteName = getIntent().getStringExtra("name");
 
         getSupportActionBar().setTitle(quoteName);
 
         getLoaderManager().initLoader(CURSOR_LOADER_ID, null, this);
-        Log.d(TAG, "ID: " + quoteID);
+
 
         tvPrice = (TextView) findViewById(R.id.tvPrice);
         tvChangePercent = (TextView) findViewById(R.id.tvChangePercent);
@@ -114,11 +115,11 @@ public class DetailStockActivity extends AppCompatActivity implements LoaderMana
         quoteSymbol = data.getString(data.getColumnIndex(QuoteColumns.SYMBOL));
         tvPrice.setText(data.getString(data.getColumnIndex(QuoteColumns.BIDPRICE)));
         tvChangePercent.setText(data.getString(data.getColumnIndex(QuoteColumns.PERCENT_CHANGE)));
-        int sdk = Build.VERSION.SDK_INT;
+
         if (data.getInt(data.getColumnIndex("is_up")) == 1) {
-            tvChangePercent.setTextColor(getResources().getColor(R.color.high_green));
+            tvChangePercent.setTextColor(ContextCompat.getColor(this, R.color.high_green));
         } else {
-            tvChangePercent.setTextColor(getResources().getColor(R.color.low_red));
+            tvChangePercent.setTextColor(ContextCompat.getColor(this, R.color.low_red));
         }
 
         tvOpen.setText(data.getString(data.getColumnIndex(QuoteColumns.OPEN)));

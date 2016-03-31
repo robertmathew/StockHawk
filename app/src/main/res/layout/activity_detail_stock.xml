@@ -53,14 +53,14 @@
             android:fontFamily="sans-serif"
             android:gravity="center_vertical"
             android:text="Open"
-            android:textAppearance="@style/TextAppearance.AppCompat.Title"
+            android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
             app:layout_columnWeight="1"
             app:layout_gravity="fill"
             app:layout_rowWeight="1" />
 
         <TextView
             android:id="@+id/tvOpen"
-            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title"
             app:layout_gravity="fill"
             tools:text="35.20" />
 
@@ -70,14 +70,14 @@
             android:gravity="center_vertical"
             android:paddingLeft="16dp"
             android:text="Prev. close"
-            android:textAppearance="@style/TextAppearance.AppCompat.Title"
+            android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
             app:layout_columnWeight="1"
             app:layout_gravity="fill"
             app:layout_rowWeight="1" />
 
         <TextView
             android:id="@+id/tvPrevClose"
-            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title"
             app:layout_gravity="fill"
             tools:text="35.47" />
 
@@ -86,13 +86,13 @@
             android:fontFamily="sans-serif"
             android:gravity="center_vertical"
             android:text="Day low"
-            android:textAppearance="@style/TextAppearance.AppCompat.Title"
+            android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
             app:layout_gravity="fill"
             app:layout_rowWeight="1" />
 
         <TextView
             android:id="@+id/tvDayLow"
-            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title"
             app:layout_gravity="fill"
             tools:text="34.25" />
 
@@ -102,12 +102,12 @@
             android:gravity="center_vertical"
             android:paddingLeft="16dp"
             android:text="Year low"
-            android:textAppearance="@style/TextAppearance.AppCompat.Title"
+            android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
             app:layout_gravity="fill" />
 
         <TextView
             android:id="@+id/tvYearLow"
-            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title"
             app:layout_gravity="fill"
             tools:text="26.15" />
 
@@ -116,13 +116,13 @@
             android:fontFamily="sans-serif"
             android:gravity="center_vertical"
             android:text="Day high"
-            android:textAppearance="@style/TextAppearance.AppCompat.Title"
+            android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
             app:layout_gravity="fill"
             app:layout_rowWeight="1" />
 
         <TextView
             android:id="@+id/tvDayHigh"
-            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title"
             app:layout_gravity="fill"
             tools:text="36.85" />
 
@@ -132,12 +132,12 @@
             android:gravity="center_vertical"
             android:paddingLeft="16dp"
             android:text="Year high"
-            android:textAppearance="@style/TextAppearance.AppCompat.Title"
+            android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
             app:layout_gravity="fill" />
 
         <TextView
             android:id="@+id/tvYearHigh"
-            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title"
             app:layout_gravity="fill"
             tools:text="46.17" />
 
